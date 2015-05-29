@@ -18,6 +18,7 @@ public class Logistyka {
     public static void main(String[] args) {
         // TODO code application logic here
         System.out.println("First upload.");
+        System.out.println("Paczki");
     }
     
 }
