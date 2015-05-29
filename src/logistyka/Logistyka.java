@@ -20,6 +20,7 @@ public class Logistyka {
         System.out.println("First upload.");
         System.out.println("Paczki");
         System.out.println("repository");
+        System.out.print("good job, lets start");
     }
     
 }
