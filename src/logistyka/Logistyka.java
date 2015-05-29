@@ -19,6 +19,7 @@ public class Logistyka {
         // TODO code application logic here
         System.out.println("First upload.");
         System.out.println("Paczki");
+        System.out.println("repository");
     }
     
 }
