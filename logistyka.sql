@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Czas generowania: 01 Cze 2015, 00:17
+-- Czas generowania: 03 Cze 2015, 23:23
 -- Wersja serwera: 5.6.20
 -- Wersja PHP: 5.5.15
 
@@ -33,7 +33,14 @@ CREATE TABLE IF NOT EXISTS `adres` (
   `NR_LOKALU` varchar(64) COLLATE utf32_polish_ci DEFAULT NULL,
   `KOD_OCZTOWY` varchar(10) COLLATE utf32_polish_ci NOT NULL,
   `POCZTA` varchar(64) COLLATE utf32_polish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Zrzut danych tabeli `adres`
+--
+
+INSERT INTO `adres` (`ID_ADRES`, `ULICA_MIEJSCOWOSC`, `NR_DOMU`, `NR_LOKALU`, `KOD_OCZTOWY`, `POCZTA`) VALUES
+(1, 'Rydla', '26', '2', '30-087', 'Kraków');
 
 -- --------------------------------------------------------
 
@@ -69,22 +76,6 @@ CREATE TABLE IF NOT EXISTS `dostawca` (
 CREATE TABLE IF NOT EXISTS `kategoria` (
 `ID_KATEGORIA` int(30) unsigned NOT NULL,
   `KATEGORIA` varchar(64) COLLATE utf32_polish_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci AUTO_INCREMENT=1 ;
-
--- --------------------------------------------------------
-
---
--- Struktura tabeli dla tabeli `klient`
---
-
-CREATE TABLE IF NOT EXISTS `klient` (
-`ID_KLIENT` int(30) unsigned NOT NULL,
-  `IMIE` varchar(64) COLLATE utf32_polish_ci NOT NULL,
-  `NAZWISKO` varchar(64) COLLATE utf32_polish_ci NOT NULL,
-  `ID_ADRES` int(30) unsigned NOT NULL,
-  `EMAIL` varchar(64) COLLATE utf32_polish_ci NOT NULL,
-  `HASLO` varchar(64) COLLATE utf32_polish_ci NOT NULL,
-  `TELEFON` varchar(9) COLLATE utf32_polish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
@@ -247,12 +238,55 @@ CREATE TABLE IF NOT EXISTS `typ_przesylki` (
 -- --------------------------------------------------------
 
 --
+-- Struktura tabeli dla tabeli `uprawnienia`
+--
+
+CREATE TABLE IF NOT EXISTS `uprawnienia` (
+`ID_UPRAWNIENIA` int(30) unsigned NOT NULL,
+  `UPRAWNIENIE` varchar(64) COLLATE utf32_polish_ci NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci AUTO_INCREMENT=3 ;
+
+--
+-- Zrzut danych tabeli `uprawnienia`
+--
+
+INSERT INTO `uprawnienia` (`ID_UPRAWNIENIA`, `UPRAWNIENIE`) VALUES
+(1, 'PRACOWNIK'),
+(2, 'KLIENT');
+
+-- --------------------------------------------------------
+
+--
+-- Struktura tabeli dla tabeli `uzytkownik`
+--
+
+CREATE TABLE IF NOT EXISTS `uzytkownik` (
+`ID_UZYTKOWNIK` int(30) unsigned NOT NULL,
+  `IMIE` varchar(64) COLLATE utf32_polish_ci NOT NULL,
+  `NAZWISKO` varchar(64) COLLATE utf32_polish_ci NOT NULL,
+  `ID_ADRES` int(30) unsigned NOT NULL,
+  `EMAIL` varchar(64) COLLATE utf32_polish_ci NOT NULL,
+  `HASLO` varchar(64) COLLATE utf32_polish_ci NOT NULL,
+  `TELEFON` varchar(9) COLLATE utf32_polish_ci NOT NULL,
+  `ID_UPRWNIENIA` int(30) unsigned NOT NULL
+) ENGINE=InnoDB  DEFAULT CHARSET=utf32 COLLATE=utf32_polish_ci AUTO_INCREMENT=4 ;
+
+--
+-- Zrzut danych tabeli `uzytkownik`
+--
+
+INSERT INTO `uzytkownik` (`ID_UZYTKOWNIK`, `IMIE`, `NAZWISKO`, `ID_ADRES`, `EMAIL`, `HASLO`, `TELEFON`, `ID_UPRWNIENIA`) VALUES
+(3, 'ADRIAN', 'WIDŁAK', 1, 'ADRIAN.WIDLAK@INTERIA.PL', 'ADRIAN', '602360496', 1);
+
+-- --------------------------------------------------------
+
+--
 -- Struktura tabeli dla tabeli `zamowienie`
 --
 
 CREATE TABLE IF NOT EXISTS `zamowienie` (
 `ID_ZAMOWIENIE` int(30) unsigned NOT NULL,
-  `ID_KLIENT` int(30) unsigned NOT NULL,
+  `ID_UZYTKOWNIK` int(30) unsigned NOT NULL,
   `DATA_ZAMOWIENIA` datetime NOT NULL,
   `ID_KOSZYK` int(30) unsigned NOT NULL,
   `ID_STATUS` int(30) unsigned NOT NULL,
@@ -286,12 +320,6 @@ ALTER TABLE `dostawca`
 --
 ALTER TABLE `kategoria`
  ADD PRIMARY KEY (`ID_KATEGORIA`);
-
---
--- Indexes for table `klient`
---
-ALTER TABLE `klient`
- ADD PRIMARY KEY (`ID_KLIENT`), ADD KEY `ID_ADRES_KLIENT` (`ID_ADRES`);
 
 --
 -- Indexes for table `kolor`
@@ -372,10 +400,22 @@ ALTER TABLE `typ_przesylki`
  ADD PRIMARY KEY (`ID_TYP_PRZESYLKI`);
 
 --
+-- Indexes for table `uprawnienia`
+--
+ALTER TABLE `uprawnienia`
+ ADD PRIMARY KEY (`ID_UPRAWNIENIA`);
+
+--
+-- Indexes for table `uzytkownik`
+--
+ALTER TABLE `uzytkownik`
+ ADD PRIMARY KEY (`ID_UZYTKOWNIK`), ADD KEY `ID_ADRES_KLIENT` (`ID_ADRES`), ADD KEY `ID_UPRAWNIENIA` (`ID_UPRWNIENIA`);
+
+--
 -- Indexes for table `zamowienie`
 --
 ALTER TABLE `zamowienie`
- ADD PRIMARY KEY (`ID_ZAMOWIENIE`), ADD KEY `ID_KLIENT` (`ID_KLIENT`), ADD KEY `ID_KOSZYK` (`ID_KOSZYK`), ADD KEY `ID_STATUS` (`ID_STATUS`), ADD KEY `ID_PRZESYLKA` (`ID_PRZESYLKA`);
+ ADD PRIMARY KEY (`ID_ZAMOWIENIE`), ADD KEY `ID_KOSZYK` (`ID_KOSZYK`), ADD KEY `ID_STATUS` (`ID_STATUS`), ADD KEY `ID_PRZESYLKA` (`ID_PRZESYLKA`), ADD KEY `ID_UZYTKOWNIK` (`ID_UZYTKOWNIK`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -385,7 +425,7 @@ ALTER TABLE `zamowienie`
 -- AUTO_INCREMENT dla tabeli `adres`
 --
 ALTER TABLE `adres`
-MODIFY `ID_ADRES` int(30) unsigned NOT NULL AUTO_INCREMENT;
+MODIFY `ID_ADRES` int(30) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT dla tabeli `dostawa`
 --
@@ -401,11 +441,6 @@ MODIFY `ID_DOSTAWCA` int(30) unsigned NOT NULL AUTO_INCREMENT;
 --
 ALTER TABLE `kategoria`
 MODIFY `ID_KATEGORIA` int(30) unsigned NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT dla tabeli `klient`
---
-ALTER TABLE `klient`
-MODIFY `ID_KLIENT` int(30) unsigned NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT dla tabeli `kolor`
 --
@@ -472,6 +507,16 @@ MODIFY `ID_TYP` int(30) unsigned NOT NULL AUTO_INCREMENT;
 ALTER TABLE `typ_przesylki`
 MODIFY `ID_TYP_PRZESYLKI` int(30) unsigned NOT NULL AUTO_INCREMENT;
 --
+-- AUTO_INCREMENT dla tabeli `uprawnienia`
+--
+ALTER TABLE `uprawnienia`
+MODIFY `ID_UPRAWNIENIA` int(30) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT dla tabeli `uzytkownik`
+--
+ALTER TABLE `uzytkownik`
+MODIFY `ID_UZYTKOWNIK` int(30) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
+--
 -- AUTO_INCREMENT dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
@@ -491,12 +536,6 @@ ADD CONSTRAINT `ID_DOSTAWCA` FOREIGN KEY (`ID_DOSTAWCA`) REFERENCES `dostawca` (
 --
 ALTER TABLE `dostawca`
 ADD CONSTRAINT `ID_ADRES_DOSTAWCA` FOREIGN KEY (`ID_ADRES`) REFERENCES `dostawca` (`ID_DOSTAWCA`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Ograniczenia dla tabeli `klient`
---
-ALTER TABLE `klient`
-ADD CONSTRAINT `ID_ADRES_KLIENT` FOREIGN KEY (`ID_ADRES`) REFERENCES `adres` (`ID_ADRES`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Ograniczenia dla tabeli `koszyk`
@@ -547,13 +586,20 @@ ALTER TABLE `przesylka`
 ADD CONSTRAINT `ID_TYP_PRZESYLKI` FOREIGN KEY (`ID_TYP_PRZESYLKI`) REFERENCES `typ_przesylki` (`ID_TYP_PRZESYLKI`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
+-- Ograniczenia dla tabeli `uzytkownik`
+--
+ALTER TABLE `uzytkownik`
+ADD CONSTRAINT `ID_ADRES_KLIENT` FOREIGN KEY (`ID_ADRES`) REFERENCES `adres` (`ID_ADRES`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `ID_UPRAWNIENIA` FOREIGN KEY (`ID_UPRWNIENIA`) REFERENCES `uprawnienia` (`ID_UPRAWNIENIA`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Ograniczenia dla tabeli `zamowienie`
 --
 ALTER TABLE `zamowienie`
-ADD CONSTRAINT `ID_KLIENT` FOREIGN KEY (`ID_KLIENT`) REFERENCES `klient` (`ID_KLIENT`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `ID_KOSZYK` FOREIGN KEY (`ID_KOSZYK`) REFERENCES `koszyk` (`ID_KOSZYK`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `ID_PRZESYLKA` FOREIGN KEY (`ID_PRZESYLKA`) REFERENCES `przesylka` (`ID_PRZESYLKA`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `ID_STATUS` FOREIGN KEY (`ID_STATUS`) REFERENCES `status_zamowienia` (`ID_STATUS`) ON DELETE CASCADE ON UPDATE CASCADE;
+ADD CONSTRAINT `ID_STATUS` FOREIGN KEY (`ID_STATUS`) REFERENCES `status_zamowienia` (`ID_STATUS`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `ID_UZYTKOWNIK` FOREIGN KEY (`ID_UZYTKOWNIK`) REFERENCES `uzytkownik` (`ID_UZYTKOWNIK`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
