@@ -29,9 +29,14 @@ public class LoginController {
         @Override
         public void actionPerformed(ActionEvent arg0){
             
+                String login=null;
+                String haslo=null;  // do tych zmiennych przypisac login i haslo pobrane z widoku
                 //theStart.getLogin(), 
                 //theStart.getPassword());
+                UzytkownikJdbcDAO dao = new UzytkownikJdbcDAO();
                 Uzytkownik user = new Uzytkownik();
+                user=dao.Logowanie(login, haslo); /* w user jest obiekt uzytkownika ze wszytskimi jego danymi albo null 
+                                                       jesli haslo nie zgadza sie z loginem albo odwrotnie */
                 if(user!=null){
                      //utoryzacja pomyslna
                 }

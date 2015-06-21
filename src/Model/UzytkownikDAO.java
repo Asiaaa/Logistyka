@@ -26,6 +26,7 @@ public interface UzytkownikDAO {
     
     public void UsunUzytkownika(int id);
     /* usuwa użytkownika o podanym id z bazy danych */
-       
+    
+    public Uzytkownik Logowanie(String login, String haslo);
     /* dodac ewentualne brakujace metody */
 }

@@ -6,6 +6,7 @@
 
 package logistyka;
 
+import Controller.LoginController;
 import Model.Magazyn;
 import Model.MagazynJdbcDAO;
 import Model.Uzytkownik;
@@ -24,9 +25,11 @@ public class Logistyka {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) {
         Start theStart = new Start();
-        LoginController theLoginController = new LoginController(theStart);
+        LoginController theLoginController = new LoginController(theStart);      
+        
     }
+    
     
 }

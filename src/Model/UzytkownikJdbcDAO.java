@@ -160,5 +160,43 @@ public class UzytkownikJdbcDAO implements UzytkownikDAO{
              System.out.println(se.getMessage());
          }
      }
+     
+     public Uzytkownik Logowanie(String login, String haslo)
+     {
+         ResultSet result = null;
+         Uzytkownik uzytkownik = new Uzytkownik();
+         try{
+         result = Base.stmt.executeQuery("SELECT US.IMIE AS IMIE, US.NAZWISKO AS NAZWISKO, "
+                + "A.ID_ADRES AS ID_ADRES, A.ULICA_MIEJSCOWOSC AS ULICA_MIEJSCOWOSC, A.NR_DOMU AS NR_DOMU, "
+                + "US.LOGIN AS LOGIN, A.NR_LOKALU AS NR_LOKALU, A.KOD_OCZTOWY AS KOD_POCZTOWY, A.POCZTA AS POCZTA, "
+                + "US.EMAIL AS EMAIL, US.TELEFON AS TELEFON, U.ID_UPRAWNIENIA AS ID_UPRAWNIENIA, U.UPRAWNIENIE AS UPRAWNIENIE "
+                + "FROM UZYTKOWNIK US INNER JOIN ADRES A ON US.ID_ADRES=A.ID_ADRES "
+                + "INNER JOIN UPRAWNIENIA U ON US.ID_UPRWNIENIA=U.ID_UPRAWNIENIA WHERE US.LOGIN='"+login+"' AND US.HASLO='"+haslo+"'");
+         if(result.next())
+         {
+                    uzytkownik.setImie(result.getString("IMIE"));
+                    uzytkownik.setNazwisko(result.getString("NAZWISKO"));
+                    uzytkownik.setLogin(result.getString("LOGIN"));
+                    uzytkownik.setIdAdres(result.getInt("ID_ADRES"));
+                    uzytkownik.setUlicaMiejscowosc(result.getString("ULICA_MIEJSCOWOSC"));
+                    uzytkownik.setNrDomu(result.getInt("NR_DOMU"));
+                    uzytkownik.setNrLokalu(result.getInt("NR_LOKALU"));
+                    uzytkownik.setKodPocztowy(result.getString("KOD_POCZTOWY"));
+                    uzytkownik.setPoczta(result.getString("POCZTA"));
+                    uzytkownik.setEmail(result.getString("EMAIL"));
+                    uzytkownik.setTelefon(result.getString("TELEFON"));
+                    uzytkownik.setIdUprawnienia(result.getInt("ID_UPRAWNIENIA"));
+                    uzytkownik.setUprawnienie(result.getString("UPRAWNIENIE"));
+         }
+         else
+         {
+             return null;
+         }
+         }catch(SQLException se)
+         {
+             System.out.println(se.getMessage());
+         }
+         return uzytkownik;
+     } // jezeli autoryzacja przebiegla pomyslnie - zwraca obiekt uzytkownika, jesli nie - zwraca null
     
 }
