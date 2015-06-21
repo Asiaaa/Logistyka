@@ -6,8 +6,10 @@
 
 package logistyka;
 
+import Controller.*;
 import Model.Uzytkownik;
 import Model.UzytkownikJdbcDAO;
+import View.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,10 +24,8 @@ public class Logistyka {
      * @param args the command line arguments
      */
     public static void main(String[] args) throws SQLException {
-        // TODO code application logic here
-        
-       // testing area :D
-        
+        Start theStart = new Start();
+        LoginController theLoginController = new LoginController(theStart);
     }
     
 }
