@@ -17,7 +17,8 @@ import java.util.logging.Logger;
 public class BaseConnection {
    private final static BaseConnection connection = new BaseConnection();
    static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-   static final String DB_URL = "jdbc:mysql://localhost:3306/logistyka?zeroDateTimeBehavior=convertToNull";   
+   //static final String DB_URL = "jdbc:mysql://localhost:3306/logistyka?zeroDateTimeBehavior=convertToNull";  
+   static final String DB_URL = "jdbc:mysql://localhost:3306/logistyka2?zeroDateTimeBehavior=convertToNull";
    static final String USERNAME = "root";
    static final String PASSWORD = "";
    Connection conn = null;

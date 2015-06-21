@@ -27,8 +27,8 @@ public class Logistyka {
      */
     public static void main(String[] args) {
         Start theStart = new Start();
-        LoginController theLoginController = new LoginController(theStart);      
-        // testing area
+        Nav theNav = new Nav();
+        LoginController theLoginController = new LoginController(theStart, theNav);      
     }
     
     
