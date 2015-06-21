@@ -42,12 +42,6 @@ public interface DostawaDAO {
     public List<Produkt> PobierzProdukty(int id_dostawy);
     /* pobiera listę produktów dla dostawy o podanym id */
     
-    public void DodajProdukt(int id_dostawy);
-    /* dodaje produkt do listy dostawy o podanym id */
-    
-    public void UsunProdukt(int id_dostawy);
-    /* usuwa produkt z listy dostawy o podanym id */
-    
    /* dodac ewentualne brakujace metody
     
     Moglyby miec jeszcze status */

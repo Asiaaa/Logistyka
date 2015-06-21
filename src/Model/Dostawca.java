@@ -18,6 +18,7 @@ public class Dostawca {
     private int nr_domu;
     private int nr_lokalu;
     private String kod_pocztowy;
+     private String poczta;
     
     public void setIdDostawca(int id)
     {
@@ -87,5 +88,15 @@ public class Dostawca {
     public String getKodPocztowy()
     {
         return kod_pocztowy;
+    }
+    
+    public void setPoczta(String poczta)
+    {
+        this.poczta=poczta;
+    }
+    
+    public String getPoczta()
+    {
+        return poczta;
     }
 }

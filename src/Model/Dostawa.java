@@ -29,7 +29,7 @@ public class Dostawa {
         return id_dostawa;
     }
     
-    public void setDostawaca(Dostawca dostawca)
+    public void setDostawca(Dostawca dostawca)
     {
         this.dostawca=dostawca;
     }
