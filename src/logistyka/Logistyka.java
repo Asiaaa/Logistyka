@@ -10,8 +10,11 @@ import Controller.*;
 import Model.Magazyn;
 import Model.MagazynJdbcDAO;
 import Model.Produkt;
+import Model.Przesylka;
 import Model.Uzytkownik;
 import Model.UzytkownikJdbcDAO;
+import Model.Zamowienie;
+import Model.ZamowienieJdbcDAO;
 import View.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -29,7 +32,8 @@ public class Logistyka {
     public static void main(String[] args) {
         Start theStart = new Start();
         Nav theNav = new Nav();
-        LoginController theLoginController = new LoginController(theStart, theNav);      
+        LoginController theLoginController = new LoginController(theStart, theNav);
+        
     }
     
     
