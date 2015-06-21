@@ -19,6 +19,7 @@ public class Nav extends javax.swing.JFrame {
         initComponents();
         setResizable(false);
         setLocationRelativeTo(null); 
+  
     }
 
     /**
@@ -96,6 +97,11 @@ public class Nav extends javax.swing.JFrame {
         Exit.setBounds(20, 320, 150, 50);
 
         MAGAZYN.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        MAGAZYN.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MAGAZYNActionPerformed(evt);
+            }
+        });
         jPanel1.add(MAGAZYN);
         MAGAZYN.setBounds(380, 10, 56, 20);
 
@@ -151,8 +157,15 @@ public class Nav extends javax.swing.JFrame {
     }//GEN-LAST:event_OrderActionPerformed
 
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
-        // TODO add your handling code here:
+    setVisible(false);
+    Start theStart = Start.getStart();
+    theStart.setVisible(true);
+// TODO add your handling code here:
     }//GEN-LAST:event_ExitActionPerformed
+
+    private void MAGAZYNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAGAZYNActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MAGAZYNActionPerformed
 
     /**
      * @param args the command line arguments

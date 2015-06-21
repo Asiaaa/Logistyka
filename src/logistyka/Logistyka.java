@@ -30,10 +30,12 @@ public class Logistyka {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Start theStart = new Start();
+        Start theStart = Start.getStart();
         Nav theNav = new Nav();
+
+        //LoginController theLoginController = new LoginController(theStart);//, theNav);      
         LoginController theLoginController = new LoginController(theStart, theNav);
-        
+
     }
     
     

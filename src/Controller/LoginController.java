@@ -40,6 +40,12 @@ public class LoginController {
                 user=dao.Logowanie(login, haslo); /* w user jest obiekt uzytkownika ze wszytskimi jego danymi albo null 
                                                        jesli haslo nie zgadza sie z loginem albo odwrotnie */
                 if(user!=null){
+                     System.out.println("Autoryzacja");
+                     Nav theNav = new Nav();
+                     theNav.setVisible(true);
+                     Start theStart = Start.getStart();
+                     theStart.setVisible(false);
+                  
                      //utoryzacja pomyslna
                     theStart.setVisible(false);
                     theNav.setVisible(true);

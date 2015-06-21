@@ -42,6 +42,8 @@
         <Component class="javax.swing.JTextField" name="LOGIN_FIELD">
           <Properties>
             <Property name="text" type="java.lang.String" value="EMAIL"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+            <Property name="name" type="java.lang.String" value="LOGIN_FIELD" noResource="true"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LOGIN_FIELDActionPerformed"/>
@@ -55,7 +57,11 @@
         <Component class="javax.swing.JTextField" name="PASSWORD_FIELD">
           <Properties>
             <Property name="text" type="java.lang.String" value="HAS&#x141;O"/>
+            <Property name="name" type="java.lang.String" value="PASS_FIELD" noResource="true"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="PASSWORD_FIELDActionPerformed"/>
+          </Events>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
               <AbsoluteConstraints x="130" y="130" width="190" height="30"/>
@@ -66,9 +72,6 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="ZALOGUJ SI&#x118;!"/>
           </Properties>
-          <AccessibilityProperties>
-            <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="ZALOGUJ SI&#x118;!"/>
-          </AccessibilityProperties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="LOGINActionPerformed"/>
           </Events>
