@@ -29,17 +29,18 @@ public interface MagazynDAO {
     public List<Produkt> PobierzListeProduktow(int id_magazynu);
     /* pobiera liste produktow magazynu o podanym id */
     
-    public void DodajProdukt(int id_magazynu, int id_produktu);
+    public void DodajProdukt(int id_magazynu, Produkt produkt, int ilosc);
     /* dodaje produkt do listy magazynu o podanym id */
     
-    public void DodajProdukt(int id_magazynu, List<Produkt> lista);
+    //public void DodajProdukt(int id_magazynu, List<Produkt> lista); niezaimplementowane
     /* dodaje liste produktow do listy mahazynu o podanym id */
     
     public void UsunProdukt(int id_magazynu, int id_produktu);
     /* usuwa produkt z listy magazynu o podanym id */
     
-    public boolean SprawdzDostepnosc(int id_magazyn, Produkt produkt);
-    /* sprawdza dostepnosc podanego produktu z uwzglednieniem atrubytu ilosc w magazynie o podanym id */
+    public int SprawdzDostepnosc(int id_magazyn, String nazwa_produktu);
+    /* sprawdza dostepnosc podanego produktu w magazynie o podanym id - zwraca ilosc produktu, w przypadku braku
+                                                                                    zwraca 0 */
     
     /* dodać ewentualne brakujące metody */
         

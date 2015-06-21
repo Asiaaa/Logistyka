@@ -16,7 +16,7 @@ import java.util.List;
  *
  * @author Joanna
  */
-public class MagazynJdbcDAO {
+public class MagazynJdbcDAO implements MagazynDAO {
     
     BaseConnection Base = BaseConnection.getConnection();
     
@@ -153,7 +153,7 @@ public class MagazynJdbcDAO {
                  + "INNER JOIN ROZMIAR R ON P.ID_ROZMIAR=R.ID_ROZMIAR "
                  + "INNER JOIN TYP T ON P.ID_TYP=T.ID_TYP "
                  + "INNER JOIN PRZECHOWYWANIE PRZ ON P.ID_PRODUKTU=PRZ.ID_PRODUKT "
-                 + "WHERE ID_PRODUKT IN(SELECT PR.ID_PRODUKT FROM PRZECHOWYWANIE PR WHERE PR.ID_MAGAZYN="+id_magazynu);
+                 + "WHERE ID_PRODUKT IN(SELECT PR.ID_PRODUKT FROM PRZECHOWYWANIE PR WHERE PR.ID_MAGAZYN="+id_magazynu+")");
          if(result.next())
          {
                     produkt.setNazwa(result.getString("NAZWA"));
@@ -178,4 +178,73 @@ public class MagazynJdbcDAO {
          return produkty;
        }
      
+    public void DodajProdukt(int id_magazynu, Produkt produkt, int ilosc)
+    {
+        PreparedStatement statement1;
+        PreparedStatement statement2;
+        ResultSet result = null;
+        int id_produkt=0;
+        try{
+         statement2 = Base.conn.prepareStatement("INSERT INTO PRODUKT VALUES(NULL,?,?,?,?,?,?,?);");
+         statement2.setString(1, produkt.getNazwa());
+         statement2.setDouble(2, produkt.getCena());
+         statement2.setInt(3, produkt.getIdKategoria());
+         statement2.setInt(4, produkt.getIdMarka());
+         statement2.setInt(5, produkt.getIdKolor());
+         statement2.setInt(6, produkt.getIdRozmiar());
+         statement2.setInt(7, produkt.getIdTyp());
+         statement2.execute();
+         result = Base.stmt.executeQuery("SELECT LAST_INSERT_ID() AS ID_PRODUKT");
+         if(result.next())
+         {
+             id_produkt=result.getInt("ID_PRODUKT");
+         }
+         statement1 = Base.conn.prepareStatement("INSERT INTO PRZECHOWYWANIE VALUES(NULL,?,?,?);");
+         statement1.setInt(1, id_magazynu);
+         statement1.setInt(2, id_produkt);
+         statement1.setInt(3, ilosc);
+         statement1.execute();
+         }catch(SQLException se)
+         {
+             System.out.println(se.getMessage());
+         }
+        
+    }
+    
+    public void UsunProdukt(int id_magazynu, int id_produktu) 
+    {
+        PreparedStatement statement;
+        try{
+        statement = Base.conn.prepareStatement("DELETE FROM PRZECHOWYWANIE WHERE ID_MAGAZYN=? AND ID_PRODUKT=?");
+        statement.setInt(1, id_magazynu);
+        statement.setInt(2, id_produktu);
+        statement.execute();
+        }catch(SQLException se)
+        {
+            System.out.println(se.getMessage());
+        }
+    }
+    
+    public int SprawdzDostepnosc(int id_magazyn, String nazwa_produktu)
+    {
+        ResultSet result = null;
+        int ilosc=0;
+        try{
+         result = Base.stmt.executeQuery("SELECT PRZ.* FROM PRZECHOWYWANIE PRZ "
+                 + "INNER JOIN PRODUKT P ON P.ID_PRODUKTU=PRZ.ID_PRODUKT WHERE ID_MAGAZYN="+id_magazyn+" AND "
+                 + "P.NAZWA='"+nazwa_produktu+"'");   
+         if(result.next())
+         {
+             ilosc=result.getInt("PRZ.ILOSC");
+         }
+         else
+         {
+             return 0;
+         }
+        }catch(SQLException se)
+        {
+            System.out.println(se.getMessage());
+        }
+        return ilosc;
+    }
 }

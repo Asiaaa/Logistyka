@@ -9,6 +9,7 @@ package logistyka;
 import Controller.*;
 import Model.Magazyn;
 import Model.MagazynJdbcDAO;
+import Model.Produkt;
 import Model.Uzytkownik;
 import Model.UzytkownikJdbcDAO;
 import View.*;
@@ -29,6 +30,7 @@ public class Logistyka {
         Start theStart = new Start();
         LoginController theLoginController = new LoginController(theStart);      
         // testing area
+        
     }
     
     
