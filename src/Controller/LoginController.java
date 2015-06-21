@@ -18,10 +18,13 @@ import java.util.Iterator;
  */
 public class LoginController {
     private Start theStart;
+    private Nav theNav;
     
-    public LoginController(Start theStart){
+    public LoginController(Start theStart, Nav theNav){
         this.theStart = theStart;
+        this.theNav=theNav;
         this.theStart.setVisible(true);
+        this.theNav.setVisible(false);
         this.theStart.addLOGINListener(new IN_LOGINListener());
     }
     
@@ -31,6 +34,7 @@ public class LoginController {
             
                 String login=theStart.getLogin();
                 String haslo=theStart.getPassword();  // do tych zmiennych przypisac login i haslo pobrane z widoku
+
                 UzytkownikJdbcDAO dao = new UzytkownikJdbcDAO();
                 Uzytkownik user = new Uzytkownik();
                 user=dao.Logowanie(login, haslo); /* w user jest obiekt uzytkownika ze wszytskimi jego danymi albo null 
@@ -41,7 +45,10 @@ public class LoginController {
                      theNav.setVisible(true);
                      Start theStart = Start.getStart();
                      theStart.setVisible(false);
-                     
+                  
+                     //utoryzacja pomyslna
+                    theStart.setVisible(false);
+                    theNav.setVisible(true);
                 }
                 else theStart.showERROR();        
         }    

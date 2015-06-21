@@ -122,7 +122,7 @@ public class Produkt {
         this.rozmiar=rozmiar;
     }
     
-    public String getRomizar()
+    public String getRozmiar()
     {
         return rozmiar;
     }

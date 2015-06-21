@@ -26,7 +26,7 @@ public interface ZamowienieDAO {
     public void UsunZamowienie(int id_zamowienia);
     /* usuwa zamowienie z bazy danych */
     
-    public void ZmienStatus(int id_status);
+    public void ZmienStatus(int id_zamowienie, int id_status);
     /* zmienia status zamowienia */
     
     public Przesylka PobierzPrzesylka (int id_zamowienie);
