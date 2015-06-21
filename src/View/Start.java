@@ -18,12 +18,18 @@ public class Start extends javax.swing.JFrame {
     /**
      * Creates new form Start
      */
-    public Start() {
+    private Start() {
         initComponents();
         setResizable(false);
-        setLocationRelativeTo(null); 
+        setLocationRelativeTo(null);
     }
-
+    
+    private static Start theStart=null;
+    public static Start getStart(){
+     if (theStart==null)
+             theStart = new Start();
+     return theStart;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -44,6 +50,8 @@ public class Start extends javax.swing.JFrame {
         jPanel2.setLayout(null);
 
         LOGIN_FIELD.setText("EMAIL");
+        LOGIN_FIELD.setToolTipText("");
+        LOGIN_FIELD.setName("LOGIN_FIELD"); // NOI18N
         LOGIN_FIELD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LOGIN_FIELDActionPerformed(evt);
@@ -53,6 +61,12 @@ public class Start extends javax.swing.JFrame {
         LOGIN_FIELD.setBounds(130, 90, 190, 30);
 
         PASSWORD_FIELD.setText("HASŁO");
+        PASSWORD_FIELD.setName("PASS_FIELD"); // NOI18N
+        PASSWORD_FIELD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PASSWORD_FIELDActionPerformed(evt);
+            }
+        });
         jPanel2.add(PASSWORD_FIELD);
         PASSWORD_FIELD.setBounds(130, 130, 190, 30);
 
@@ -64,7 +78,6 @@ public class Start extends javax.swing.JFrame {
         });
         jPanel2.add(LOGIN);
         LOGIN.setBounds(191, 180, 130, 30);
-        LOGIN.getAccessibleContext().setAccessibleName("ZALOGUJ SIĘ!");
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Images/bg.png"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -86,12 +99,18 @@ public class Start extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void LOGINActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGINActionPerformed
-       // showERROR();
+    // showERROR();
     }//GEN-LAST:event_LOGINActionPerformed
 
     private void LOGIN_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LOGIN_FIELDActionPerformed
+    //mail
         // TODO add your handling code here:
     }//GEN-LAST:event_LOGIN_FIELDActionPerformed
+
+    private void PASSWORD_FIELDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PASSWORD_FIELDActionPerformed
+    //pass
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PASSWORD_FIELDActionPerformed
 
     /**
      * @param args the command line arguments

@@ -37,6 +37,11 @@ public class LoginController {
                                                        jesli haslo nie zgadza sie z loginem albo odwrotnie */
                 if(user!=null){
                      System.out.println("Autoryzacja");
+                     Nav theNav = new Nav();
+                     theNav.setVisible(true);
+                     Start theStart = Start.getStart();
+                     theStart.setVisible(false);
+                     
                 }
                 else theStart.showERROR();        
         }    
