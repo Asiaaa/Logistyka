@@ -16,10 +16,12 @@ public class Uzytkownik {
     private String nazwisko;
     private String login;
     private String haslo;
+    private int id_adres;
     private String ulica_miejscowosc;
     private int nr_domu;
     private int nr_lokalu;
     private String kod_pocztowy;
+    private String poczta;
     private String email;
     private String telefon;
     private int id_uprawnienia;
@@ -75,6 +77,16 @@ public class Uzytkownik {
         return haslo;
     }
     
+    public void setIdAdres(int id)
+    {
+        id_adres=id;
+    }
+    
+    public int getIdAdres()
+    {
+        return id_adres;
+    }
+    
     public void setUlicaMiejscowosc(String um)
     {
         ulica_miejscowosc=um;
@@ -118,6 +130,16 @@ public class Uzytkownik {
     public void setEmail(String email)
     {
         this.email=email;
+    }
+    
+    public void setPoczta(String poczta)
+    {
+        this.poczta=poczta;
+    }
+    
+    public String getPoczta()
+    {
+        return poczta;
     }
     
     public String getEmail()

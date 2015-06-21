@@ -6,6 +6,12 @@
 
 package logistyka;
 
+import Model.Uzytkownik;
+import Model.UzytkownikJdbcDAO;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Joanna
@@ -15,12 +21,11 @@ public class Logistyka {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         // TODO code application logic here
-        System.out.println("First upload.");
-        System.out.println("Paczki");
-        System.out.println("repository");
-        System.out.print("good job, lets start");
+        
+       // testing area :D
+        
     }
     
 }
