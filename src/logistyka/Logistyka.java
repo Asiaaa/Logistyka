@@ -6,7 +6,7 @@
 
 package logistyka;
 
-import Controller.LoginController;
+import Controller.*;
 import Model.Magazyn;
 import Model.MagazynJdbcDAO;
 import Model.Uzytkownik;
