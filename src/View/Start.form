@@ -41,7 +41,7 @@
       <SubComponents>
         <Component class="javax.swing.JTextField" name="LOGIN_FIELD">
           <Properties>
-            <Property name="text" type="java.lang.String" value="EMAIL"/>
+            <Property name="text" type="java.lang.String" value="LOGIN"/>
             <Property name="toolTipText" type="java.lang.String" value=""/>
             <Property name="name" type="java.lang.String" value="LOGIN_FIELD" noResource="true"/>
           </Properties>

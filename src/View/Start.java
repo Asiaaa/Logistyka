@@ -49,7 +49,7 @@ public class Start extends javax.swing.JFrame {
 
         jPanel2.setLayout(null);
 
-        LOGIN_FIELD.setText("EMAIL");
+        LOGIN_FIELD.setText("LOGIN");
         LOGIN_FIELD.setToolTipText("");
         LOGIN_FIELD.setName("LOGIN_FIELD"); // NOI18N
         LOGIN_FIELD.addActionListener(new java.awt.event.ActionListener() {
@@ -155,6 +155,12 @@ public class Start extends javax.swing.JFrame {
     public String getLogin()
     {
         return LOGIN_FIELD.getText();
+    }
+    
+    public void clearForm()
+    {
+    PASSWORD_FIELD.setText("HASŁO");
+    LOGIN_FIELD.setText("LOGIN");
     }
     
     public void showERROR()

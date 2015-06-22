@@ -6,6 +6,14 @@
 
 package View;
 
+import Model.Uzytkownik;
+import Model.UzytkownikJdbcDAO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author adrian
@@ -18,8 +26,18 @@ public class Nav extends javax.swing.JFrame {
     public Nav() {
         initComponents();
         setResizable(false);
-        setLocationRelativeTo(null); 
-  
+        setLocationRelativeTo(null);
+        
+//        List<Uzytkownik> uzytkownicy = new ArrayList<Uzytkownik>();
+//        UzytkownikJdbcDAO userDAO = new UzytkownikJdbcDAO();
+//        uzytkownicy=userDAO.PobierzUzytkownikow();
+//        List<String> columns = new ArrayList<String>();
+//        columns.add("col1");
+//        columns.add("col1");
+//        columns.add("col1");
+//        TableModel tableModel = new DefaultTableModel(uzytkownicy.toArray(new Object[][] {}), columns.toArray());
+//        tabelaNav = new JTable(tableModel);
+       
     }
 
     /**
@@ -40,7 +58,7 @@ public class Nav extends javax.swing.JFrame {
         Exit = new javax.swing.JButton();
         MAGAZYN = new javax.swing.JComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabelaNav = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,7 +123,7 @@ public class Nav extends javax.swing.JFrame {
         jPanel1.add(MAGAZYN);
         MAGAZYN.setBounds(380, 10, 56, 20);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabelaNav.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -116,7 +134,7 @@ public class Nav extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabelaNav);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(210, 40, 430, 340);
@@ -159,8 +177,9 @@ public class Nav extends javax.swing.JFrame {
     private void ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExitActionPerformed
     setVisible(false);
     Start theStart = Start.getStart();
+    theStart.clearForm();
     theStart.setVisible(true);
-// TODO add your handling code here:
+    
     }//GEN-LAST:event_ExitActionPerformed
 
     private void MAGAZYNActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MAGAZYNActionPerformed
@@ -213,6 +232,6 @@ public class Nav extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabelaNav;
     // End of variables declaration//GEN-END:variables
 }
